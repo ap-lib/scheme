@@ -52,7 +52,7 @@ This allows constructing an object from structured data.
 
 ```php
 use AP\Scheme\ToObject;
-use AP\Scheme\DataErrors;
+use AP\ErrorNode\ThrowableErrors
 
 class User implements ToObject
 {
@@ -64,7 +64,7 @@ class User implements ToObject
     public static function toObject(array|string|int|float|bool|null $data): static
     {
         if (!is_array($data) || !isset($data['name'], $data['age'])) {
-            throw new DataErrors([new BaseError("Invalid input data")]);
+            throw new ThrowableErrors([new BaseError("Invalid input data")]);
         }
 
         return new self($data['name'], $data['age']);
@@ -77,7 +77,8 @@ This ensures the object maintains a valid internal state
 
 ```php
 use AP\Scheme\Validation;
-use AP\Scheme\DataErrors;
+use AP\ErrorNode\Error;
+use AP\ErrorNode\Errors;
 
 class User implements Validation
 {
@@ -91,14 +92,14 @@ class User implements Validation
         $errors = [];
 
         if (empty($this->name)) {
-            $errors[] = new BaseError("Name cannot be empty");
+            $errors[] = new Error("Name cannot be empty", ["name"]);
         }
 
         if ($this->age < 0) {
-            $errors[] = new BaseError("Age must be a positive integer");
+            $errors[] = new Error("Age must be a positive integer", ["age"]);
         }
 
-        return empty($errors) ? true : new DataErrors($errors);
+        return empty($errors) ? true : new Errors($errors);
     }
 }
 

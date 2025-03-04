@@ -2,6 +2,7 @@
 
 namespace AP\Scheme;
 
+use AP\ErrorNode\Errors;
 use Throwable;
 
 /**
@@ -12,8 +13,8 @@ interface Validation
     /**
      * Validates the object’s internal state
      *
-     * @return true|DataErrors
+     * @return true|Errors
      * @throws Throwable Other no related with data errors
      */
-    public function isValid(): true|DataErrors;
+    public function isValid(): true|Errors;
 }
