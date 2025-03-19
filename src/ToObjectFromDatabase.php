@@ -18,5 +18,5 @@ interface ToObjectFromDatabase
      * @throws ThrowableErrors If the provided data is invalid or can't be transformed
      * @throws Throwable Other no related with data errors
      */
-    public static function toObject(array|string|int|float|bool|null $data): static;
+    public static function toObjectFromDatabase(array|string|int|float|bool|null $data): static;
 }

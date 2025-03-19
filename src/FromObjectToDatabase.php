@@ -16,5 +16,5 @@ interface FromObjectToDatabase
      * @return array|string|int|float|bool|null The converted representation of the object
      * @throws Throwable No related with data errors
      */
-    public function fromObject(): array|string|int|float|bool|null;
+    public function fromObjectToDatabase(): array|string|int|float|bool|null;
 }
