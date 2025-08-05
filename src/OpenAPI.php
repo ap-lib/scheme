@@ -7,5 +7,5 @@ interface OpenAPI
     /**
      * @return array
      */
-    public function openAPI(): array;
+    public static function openAPI(): array;
 }
